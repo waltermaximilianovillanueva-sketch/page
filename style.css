@@ -1,0 +1,372 @@
+
+/* ===== CONFIGURACIÓN GENERAL ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --azul: #0759a8;
+    --celeste: #71e1ff;
+    --blanco: #f5fbff;
+    --panel: rgba(160, 224, 255, 0.28);
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--blanco);
+
+    background:
+        radial-gradient(ellipse at 15% 20%,
+            rgba(92, 215, 255, 0.8), transparent 40%),
+        radial-gradient(ellipse at 85% 75%,
+            rgba(0, 61, 155, 0.8), transparent 45%),
+        linear-gradient(135deg, #1689dc, #0751a0 65%, #063878);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px 20px;
+}
+
+/* ===== ENCABEZADO ===== */
+
+.encabezado {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.encabezado h1 {
+    font-size: clamp(2.3rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-shadow: 0 5px 20px rgba(0, 30, 80, 0.25);
+}
+
+.encabezado h1 span {
+    color: var(--celeste);
+}
+
+.encabezado p {
+    margin-top: 18px;
+    font-size: 1.1rem;
+    color: #e0f6ff;
+}
+
+.decoracion {
+    width: 160px;
+    height: 3px;
+    margin: 15px auto 0;
+    border-radius: 10px;
+    background: linear-gradient(
+        90deg, transparent, var(--celeste), transparent
+    );
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+
+.contenedor {
+    width: min(100%, 1050px);
+}
+
+.carousel {
+    padding: 22px;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+
+    background: var(--panel);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 15px 45px rgba(0, 31, 85, 0.25),
+        inset 0 0 20px rgba(255, 255, 255, 0.12);
+}
+
+/* ===== VISOR DE IMÁGENES ===== */
+
+
+/* Visor adaptable al tamaño de la imagen */
+.visor {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 15px;
+
+    /* Altura adaptable mediante JavaScript */
+    transition: height 0.35s ease;
+}
+
+/* Imagen principal: conserva sus proporciones */
+.imagen-central {
+    position: relative;
+    display: block;
+
+    left: auto;
+    width: 84%;
+    height: auto;
+    margin: 0 auto;
+
+    aspect-ratio: var(--proporcion-imagen, 16 / 9);
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 20px;
+    z-index: 2;
+
+    transition: aspect-ratio 0.35s ease;
+}
+
+/* Imágenes laterales */
+.imagen-lateral {
+    position: absolute;
+    top: 0;
+    width: 7%;
+    height: 100%;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 12px;
+    opacity: 0.75;
+    filter: brightness(0.8);
+    z-index: 1;
+}
+
+.imagen-lateral.izquierda {
+    left: 0;
+}
+
+.imagen-lateral.derecha {
+    right: 0;
+}
+
+/* En celulares, aprovechamos más espacio */
+@media (max-width: 600px) {
+    .imagen-central {
+        width: 82%;
+    }
+
+    .imagen-lateral {
+        width: 8%;
+    }
+}
+
+
+
+
+
+
+/* ===== FLECHAS ===== */
+
+.flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+
+    color: #0759a8;
+    background: #eafaff;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+    box-shadow: 0 5px 18px rgba(0, 30, 70, 0.2);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.flecha.anterior {
+    left: 0;
+}
+
+.flecha.siguiente {
+    right: 0;
+}
+
+.flecha:hover {
+    background: #80e8ff;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.flecha:focus-visible,
+#botonMusica:focus-visible,
+.indicadores button:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+}
+
+/* ===== DESCRIPCIÓN ===== */
+
+.descripcion {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+
+    background: rgba(0, 70, 155, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+}
+
+.descripcion h2 {
+    font-size: 1.65rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.descripcion p {
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.7;
+    color: #e4f7ff;
+}
+
+/* ===== INDICADORES ===== */
+
+.indicadores {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.indicadores button {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.indicadores button.activo {
+    background: var(--celeste);
+    transform: scale(1.2);
+}
+
+/* ===== REPRODUCTOR DE MÚSICA ===== */
+
+.musica {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+
+    margin-top: 22px;
+    padding: 16px 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    background: rgba(0, 43, 110, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.nota-musical {
+    font-size: 1.8rem;
+    color: var(--celeste);
+}
+
+.informacion-musica {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.informacion-musica small {
+    color: #c6eaff;
+}
+
+#botonMusica {
+    padding: 10px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
+    background: #eafaff;
+    color: #0759a8;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#botonMusica:hover {
+    background: var(--celeste);
+}
+
+.control-volumen {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.control-volumen input {
+    width: 100px;
+    accent-color: var(--celeste);
+    cursor: pointer;
+}
+
+/* ===== PIE DE PÁGINA ===== */
+
+footer {
+    margin-top: 28px;
+    text-align: center;
+    color: #c8eaff;
+    font-size: 0.9rem;
+}
+
+/* ===== CELULARES ===== */
+
+@media (max-width: 600px) {
+    body {
+        padding: 30px 12px 18px;
+    }
+
+    .encabezado h1 {
+        letter-spacing: -1px;
+    }
+
+    .carousel {
+        padding: 12px;
+    }
+
+    .visor {
+        height: 250px;
+    }
+
+    .imagen-central {
+        left: 9%;
+        width: 82%;
+    }
+
+    .flecha {
+        width: 38px;
+        height: 38px;
+    }
+
+    .descripcion {
+        padding: 16px 12px;
+    }
+
+    .descripcion h2 {
+        font-size: 1.3rem;
+    }
+
+    .descripcion p {
+        font-size: 0.95rem;
+    }
+
+    .musica {
+        gap: 12px;
+    }
+}

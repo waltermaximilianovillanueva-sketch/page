@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Elizabeth Bordon </title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <h1>Feliz Dia de las madres <span>Diosa de la transformación</span></h1>
+        <div class="decoracion"></div>
+        <p>espero que te guste :D</p>
+    </header>
+
+    <main class="contenedor">
+
+        <section class="carousel" aria-label="Carrusel de paisajes">
+
+            <div class="visor">
+
+                <div class="imagen-lateral izquierda" id="imagenIzquierda">
+                </div>
+
+                <div class="imagen-central" id="imagenCentral">
+                </div>
+
+                <div class="imagen-lateral derecha" id="imagenDerecha">
+                </div>
+
+                <button
+                    class="flecha anterior"
+                    id="anterior"
+                    aria-label="Imagen anterior">
+                    &#10094;
+                </button>
+
+                <button
+                    class="flecha siguiente"
+                    id="siguiente"
+                    aria-label="Imagen siguiente">
+                    &#10095;
+                </button>
+
+            </div>
+
+            <div class="descripcion" aria-live="polite">
+                <h2 id="tituloPaisaje"></h2>
+                <p id="textoPaisaje">
+                    
+                </p>
+            </div>
+
+            <div class="indicadores" id="indicadores"
+                 aria-label="Seleccionar paisaje">
+            </div>
+
+        </section>
+
+        <section class="musica">
+            <span class="nota-musical" aria-hidden="true">♫</span>
+
+            <div class="informacion-musica">
+                <strong>Música de fondo</strong>
+                <small id="estadoMusica">Lista para reproducir</small>
+            </div>
+
+            <button id="botonMusica" aria-pressed="false">
+                ▶ Reproducir
+            </button>
+
+            <label class="control-volumen">
+                <span>Volumen</span>
+                <input
+                    type="range"
+                    id="volumen"
+                    min="0"
+                    max="1"
+                    step="0.05"
+                    value="0.35"
+                    aria-label="Volumen de la música">
+            </label>
+
+            <audio id="audioFondo" loop preload="none">
+                <source src="mp3/Diosa De La Transformación.m4a" type="audio/mpeg">
+                
+            </audio>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Creado por Walter Bordon</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
